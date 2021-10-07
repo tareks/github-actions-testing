@@ -37,6 +37,10 @@ jobs:
     steps:
     - name: smoke test
       run: echo "curl something"
+    - name: simulate failure
+      run: |
+        echo "nope"
+        exit 1
 
   notify:
     name: Notify
