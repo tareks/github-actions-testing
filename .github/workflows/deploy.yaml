@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  repository_dispatch:
+    types: [deploy-trigger]
+  workflow_dispatch:
+    inputs:
+      location:
+        default: useast1
+        description: Location
+        required: true
+      environment:
+        default: dev
+        description: 'Name of environment'
+        required: true
+
+jobs:
+  prep:
+    name: Prep
+    runs-on: ubuntu-latest
+    steps:
+    - name: Init
+      run: echo "Prepare for run.."
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Do Stuff
+      run: echo "Doing stuff.."
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: smoke test
+      run: echo "curl something"
+
+  notify:
+    name: Notify
+    if: always()
+    needs: [prep, deploy, test]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Success
+      if: |
+        (needs.deploy.result == 'success') && (needs.test.result == 'success')
+      run: "echo Successful Deployment"
+    - name: Failure
+      if: |
+        (needs.deploy.result != 'success') || (needs.test.result != 'success')
+      run: "echo Failed Deployment!"
