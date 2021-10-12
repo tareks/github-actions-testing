@@ -1,7 +1,7 @@
 name: Deploy
 
 concurrency:
-  group: ${{ github.action }}
+  group: 'deploy'
   cancel-in-progress: false
 
 on:
