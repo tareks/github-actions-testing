@@ -1,5 +1,9 @@
 name: Deploy
 
+concurrency:
+  group: ${{ inputs.location }}-${{ inputs.environment }}
+  cancel-in-progress: false
+
 on:
   repository_dispatch:
     types: [deploy-trigger]
