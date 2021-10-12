@@ -1,7 +1,7 @@
 name: Deploy
 
 concurrency:
-  group: 'deploy'
+  group: ${{ github.event.inputs.location }}-${{ github.event.inputs.environment }}
   cancel-in-progress: false
 
 on:
