@@ -1,1 +1,11 @@
 
+name: test branch workflow
+
+on:
+  push:
+    branches: test
+    
+jobs:
+  dummy:
+    steps:
+    - run: echo "test"
