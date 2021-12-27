@@ -1,1 +1,12 @@
 
+name: test branch workflow
+
+on:
+  push:
+    branches: test
+    
+jobs:
+  dummy:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "test"
