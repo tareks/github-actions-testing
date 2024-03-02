@@ -10,8 +10,9 @@ on:
     #   - /version.rb'
     # tags: # TODO: maybe just when a new tag is created?
     #   - v*
+  # Trigger on new releases
   release:
-    types: [published]
+    types: [released] 
 
 env:
   repoList: |
